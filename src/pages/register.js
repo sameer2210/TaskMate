@@ -1,38 +1,46 @@
-import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
-import { useEffect } from "react";
 import Button from "@/components/ui/Button";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
-const register = () => {
-  // const router = useRouter();
-  // const {status} = useSession();
+const Register = () => {
+  const router = useRouter();
+  const { status } = useSession();
 
-  // useEffect(() => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
 
-  // },[])
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/profile");
+    }
+  }, [status, router]);
 
-  const SignupHandler = async () => {
-    const newUser = {
-      name: "",
-      email: "",
-      password: ""
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const SignupHandler = async (e) => {
+    e.preventDefault();
     try {
       const response = await fetch("/api/auth/register", {
         method: "POST",
+        body: JSON.stringify(formData),
         headers: {
           "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newUser)
+        }
       });
 
+      const result = await response.json();
       if (response.ok) {
-        const result = await response.json();
-        console.log(result);
-        console.log("success");
+        console.log("Registration successful:", result);
         router.push("/login");
       } else {
-        console.error("Registration failed");
+        console.error("Registration failed:", result.message);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -40,7 +48,7 @@ const register = () => {
   };
 
   return (
-    <div>
+    <div className="max-w-lg mx-auto px-4 py-8">
       <h1 className="text-4xl">Register</h1>
       <form className="space-y-8 mt-6 p-4 shadow-xl" onSubmit={SignupHandler}>
         <div>
@@ -50,6 +58,8 @@ const register = () => {
             type="text"
             id="name"
             name="name"
+            value={formData.name}
+            onChange={handleChange}
             required
           />
         </div>
@@ -60,6 +70,8 @@ const register = () => {
             type="email"
             id="email"
             name="email"
+            value={formData.email}
+            onChange={handleChange}
             required
           />
         </div>
@@ -70,6 +82,8 @@ const register = () => {
             type="password"
             id="password"
             name="password"
+            value={formData.password}
+            onChange={handleChange}
             required
           />
         </div>
@@ -79,4 +93,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default Register;
