@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     }
 
     const client = await connectToDatabase();
-    const db = client.db();
+    const db = client.db("TaskMate");
 
     const existingUser = await db.collection("users").findOne({ email });
     if (existingUser) {
@@ -25,14 +25,16 @@ export default async function handler(req, res) {
     const result = await db.collection("users").insertOne({
       name,
       email,
-      password: hashedPassword
+      password: hashedPassword,
     });
 
     res
       .status(201)
       .json({ message: "User created!", userId: result.insertedId });
   } catch (error) {
-    console.error("Registration error:", error);
+    console.error("Registration error:", error.message, error.stack);
+    console.error(error);
+    console.log(error)
     res.status(500).json({ message: "Internal Server Error" });
   }
 }

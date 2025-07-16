@@ -23,7 +23,9 @@ export default NextAuth({
         }
 
         const client = await connectToDatabase();
-        const db = client.db();
+        // const db = client.db();              // for loacal mongodb compass
+        const db = client.db("TaskMate");       //  Use your DB name when MongoDB Atlas
+
         const user = await db.collection("users").findOne({ email });
 
         if (!user) {
@@ -43,5 +45,4 @@ export default NextAuth({
   pages: {
     signIn: "/signin",       // Optional: Custom sign-in page route
   },
-  secret: process.env.NEXTAUTH_SECRET,     // required for JWT signing
 });

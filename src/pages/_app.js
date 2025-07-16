@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 export default function App({
   Component,
-  pageProps: { session, ...pageProps }
+  pageProps: { session, ...pageProps },
 }) {
   const router = useRouter();
   const hideLayout = ["/login", "/register"].includes(router.pathname);
@@ -20,7 +20,7 @@ export default function App({
           <Sidebar />
           <div className="flex flex-col flex-1">
             <Header />
-            <main className="p-6 overflow-y-auto h-full">
+            <main className="overflow-y-auto h-full">
               <Component {...pageProps} />
             </main>
           </div>
