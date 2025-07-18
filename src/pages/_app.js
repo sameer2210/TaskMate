@@ -1,8 +1,11 @@
+
 import "@/styles/globals.css";
 import Header from "@/components/layout/Header";
 import Sidebar from "@/components/layout/Sidebar";
 import { SessionProvider } from "next-auth/react";
 import { useRouter } from "next/router";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App({
   Component,
@@ -26,6 +29,7 @@ export default function App({
           </div>
         </div>
       )}
+       <ToastContainer position="top-right" autoClose={3000}   hideProgressBar={false} newestOnTop={false} pauseOnFocusLoss closeOnClick draggable pauseOnHover theme="dark" limit={3} />
     </SessionProvider>
   );
 }

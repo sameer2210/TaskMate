@@ -99,6 +99,7 @@
 //-------------------------------------------------------------------------------------------------------------------------
 
 import Button from "@/components/ui/Button";
+import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -143,14 +144,17 @@ const Register = () => {
       const result = await response.json();
       if (response.ok) {
         console.log("Registration successful:", result);
+        toast.success("Registration successful")
         router.push("/login");
       } else {
         setError(result.message || "Registration failed");
         console.error("Registration failed:", result.message);
+        toast.error("Registration failed:")
       }
     } catch (error) {
       setError("An unexpected error occurred");
       console.error("Error:", error);
+      toast.warn("An unexpected error occurred")
     } finally {
       setIsLoading(false);
     }

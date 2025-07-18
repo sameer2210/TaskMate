@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
 import Button from "@/components/ui/Button";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
 
 const Settings = () => {
   const [newTask, setNewTask] = useState({
@@ -117,14 +119,17 @@ const Settings = () => {
 
       const data = await res.json();
       if (res.ok) {
-        alert(" Data saved to MongoDB!");
+        // alert(" Data saved to MongoDB!");
+        toast.success("Data saved to MongoDB!")
       } else {
-        alert(" Failed to save data.");
+        // alert(" Failed to save data.");
+        toast.info("Failed to save data!")
         console.error(data);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Something went wrong!");
+      // alert("Something went wrong!");
+      toast.error("Something went wrong!")
     }
   };
 

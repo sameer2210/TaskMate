@@ -77,6 +77,7 @@
 //----------------------------------------------------------------------------------------------------------
 
 import Button from "@/components/ui/Button";
+import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -110,9 +111,11 @@ const Login = () => {
     setIsLoading(false);
     if (result.error) {
       setError(result.error);
-      console.error("Signin failed:", result.error);
+      toast.error("Login failed")
+      console.error("Login failed:", result.error);
     } else {
-      console.log("Signin successful:", result);
+      console.log("Login successful:", result);
+      toast.success("Login successful")
       router.replace("/dashboard");
     }
   };

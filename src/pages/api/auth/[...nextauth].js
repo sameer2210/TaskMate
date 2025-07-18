@@ -43,6 +43,6 @@ export default NextAuth({
     }),
   ],
   pages: {
-    signIn: "/signin",       // Optional: Custom sign-in page route
+    signIn: "/login",       // Optional: Custom sign-in page route
   },
 });
