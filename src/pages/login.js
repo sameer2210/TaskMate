@@ -113,7 +113,7 @@ const Login = () => {
       console.error("Signin failed:", result.error);
     } else {
       console.log("Signin successful:", result);
-      router.replace("/profile");
+      router.replace("/dashboard");
     }
   };
 

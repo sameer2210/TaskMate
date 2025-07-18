@@ -23,8 +23,8 @@ export default NextAuth({
         }
 
         const client = await connectToDatabase();
-        // const db = client.db();              // for loacal mongodb compass
-        const db = client.db("TaskMate");       //  Use your DB name when MongoDB Atlas
+        const db = client.db();              // for loacal mongodb compass
+        // const db = client.db("TaskMate");       //  Use your DB name when MongoDB Atlas
 
         const user = await db.collection("users").findOne({ email });
 

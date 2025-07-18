@@ -9,22 +9,22 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-gray-200 shadow-sm px-6 py-6 flex justify-between items-center">
-      <h1 className="text-xl font-bold">TaskMate</h1>
+    <header className=" bg-gradient-to-tr from-slate-200 to-slate-300 shadow-sm px-8 py-7 flex justify-between items-center hover:border-b border-indigo-700 tracking-tight">
+      <h1></h1>
       <nav>
         {status === "loading" ? (
           <p>Loading...</p>
         ) : session ? (
-          <ul className="flex items-center space-x-6">
+          <ul className="flex items-center space-x-8">
             <li>
-              <span className="text-gray-700">
+              <span className="text-gray-700 ">
                 Hello, {session.user?.name || session.user?.email}
               </span>
             </li>
             <li>
               <button
                 onClick={SignoutHandler}
-                className="text-red-500 hover:underline"
+                className="text-red-500 font-mono font-semibold hover:underline"
               >
                 Signout
               </button>

@@ -20,7 +20,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <main className="min-h-screen bg-gradient-to-br from-indigo-900 to-indigo-900 relative overflow-hidden">
+      <main className="min-h-screen bg-gradient-to-br from-gray-950 to-teal-900 relative overflow-hidden">
         {/* Hero Section */}
         <div
           className={`relative z-10 flex flex-col items-center justify-center px-6 text-center pt-16 pb-20 transition-all duration-1000 ${
@@ -30,7 +30,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
               Transform Your
-              <span className="block bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent animate-pulse">
+              <span className="block bg-gradient-to-r from-pink-400 to-indigo-900 bg-clip-text text-transparent animate-pulse">
                 Productivity
               </span>
             </h1>
