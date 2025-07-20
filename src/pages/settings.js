@@ -2,7 +2,6 @@ import Button from "@/components/ui/Button";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-
 const Settings = () => {
   const [newTask, setNewTask] = useState({
     title: "",
@@ -51,7 +50,7 @@ const Settings = () => {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const res = await fetch("/api/getSettings");
+        const res = await fetch("/api/settingApi/getSettings");
         const data = await res.json();
         if (res.ok) {
           setBoardData(
@@ -111,7 +110,7 @@ const Settings = () => {
 
   const handleSave = async () => {
     try {
-      const res = await fetch("/api/saveSettings", {
+      const res = await fetch("/api/settingApi/saveSettings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ boardData, users, activityLog }),
@@ -120,16 +119,16 @@ const Settings = () => {
       const data = await res.json();
       if (res.ok) {
         // alert(" Data saved to MongoDB!");
-        toast.success("Data saved to MongoDB!")
+        toast.success("Data saved to MongoDB!");
       } else {
         // alert(" Failed to save data.");
-        toast.info("Failed to save data!")
+        toast.info("Failed to save data!");
         console.error(data);
       }
     } catch (error) {
       console.error("Error:", error);
       // alert("Something went wrong!");
-      toast.error("Something went wrong!")
+      toast.error("Something went wrong!");
     }
   };
 
@@ -183,51 +182,47 @@ const Settings = () => {
 
             <div className="flex justify-around">
               <div>
-              <label className="block  text-sm text-slate-700 mb-1 font-medium">
-                Assign User
-              </label>
-              <select
-                name="assignedUser"
-                value={newTask.assignedUser}
-                onChange={handleInputChange}
-                className="w-full px-4 py-2 border-b-2 border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-500"
-                required
-              >
-                <option value="">-- Select User --</option>
-                {users.map((user) => (
-                  <option key={user.initials} value={user.name}>
-                    {user.name}
-                  </option>
-                ))}
-              </select>
+                <label className="block  text-sm text-slate-700 mb-1 font-medium">
+                  Assign User
+                </label>
+                <select
+                  name="assignedUser"
+                  value={newTask.assignedUser}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border-b-2 border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-500"
+                  required
+                >
+                  <option value="">-- Select User --</option>
+                  {users.map((user) => (
+                    <option key={user.initials} value={user.name}>
+                      {user.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm text-slate-700 mb-1 font-medium">
+                  Status
+                </label>
+                <select
+                  name="status"
+                  value={newTask.status}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-2 border-b-2 border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-500"
+                >
+                  <option value="todo">To Do</option>
+                  <option value="inProgress">In Progress</option>
+                  <option value="done">Done</option>
+                </select>
+              </div>
             </div>
 
-            <div>
-              <label className="block text-sm text-slate-700 mb-1 font-medium">
-                Status
-              </label>
-              <select
-                name="status"
-                value={newTask.status}
-                onChange={handleInputChange}
-                className="w-full px-4 py-2 border-b-2 border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-stone-500"
-              >
-                <option value="todo">To Do</option>
-                <option value="inProgress">In Progress</option>
-                <option value="done">Done</option>
-              </select>
-            </div>
-            </div>
-
-            <Button type="submit" >
-              ➕ Add Task
-            </Button>
+            <Button type="submit">➕ Add Task</Button>
           </form>
         </div>
 
-        <Button onClick={handleSave} >
-          💾 Save All Data to MongoDB
-        </Button>
+        <Button onClick={handleSave}>💾 Save All Data</Button>
       </div>
     </div>
   );
