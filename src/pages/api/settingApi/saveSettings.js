@@ -1,5 +1,5 @@
-// /pages/api/saveSettings.js
 import { connectToDatabase } from "@/lib/mongodb";
+import { toast } from "react-toastify";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -26,8 +26,10 @@ export default async function handler(req, res) {
     );
 
     res.status(200).json({ message: "Settings saved successfully", result });
+    toast.success("Settings saved successfully!");
   } catch (error) {
     console.error("Error saving settings:", error);
+    toast.error("Failed to save settings. Please try again.");
     res.status(500).json({ message: "Internal Server Error", error });
   }
 }

@@ -21,7 +21,7 @@ export default function Home() {
       </Head>
 
       <main className="min-h-screen bg-gradient-to-br from-gray-950 to-teal-900 relative overflow-hidden">
-        {/* Hero Section */}
+        {/* Hero  */}
         <div
           className={`relative z-10 flex flex-col items-center justify-center px-6 text-center pt-16 pb-20 transition-all duration-1000 ${
             isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
@@ -41,11 +41,11 @@ export default function Home() {
               and achieve more together.
             </p>
 
-            {/* Action Buttons */}
+            {/*  Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
               <Link
                 href="/register"
-                className="group px-8 py-4 bg-gradient-to-r from-pink-500 to-violet-500 text-white rounded-2xl shadow-2xl hover:from-pink-600 hover:to-violet-600 transition-all duration-300 transform hover:scale-105 hover:shadow-pink-500/25 flex items-center gap-2"
+                className="group px-8 py-4 bg-gradient-to-r from-stone-500 to-violet-100 rounded-2xl shadow-2xl hover:from-pink-100 hover:to-violet-100 transition-all duration-300 transform hover:scale-105 hover:shadow-pink-500/25 flex items-center gap-2"
               >
                 <span className="text-lg font-semibold">Start Free Trial</span>
                 <svg
@@ -71,10 +71,9 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Feature Cards */}
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-16">
               <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-violet-500 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                <div className="w-12 h-12  flex items-center justify-center mb-4 mx-auto">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="none"
@@ -98,7 +97,7 @@ export default function Home() {
               </div>
 
               <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                <div className="w-12 h-12  flex items-center justify-center mb-4 mx-auto">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="none"
@@ -122,7 +121,7 @@ export default function Home() {
               </div>
 
               <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                <div className="w-12 h-12 bg-gradient-to-r from-teal-300 to-teal-600 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                <div className="w-12 h-12  flex items-center justify-center mb-4 mx-auto">
                   <svg
                     className="w-6 h-6 text-white"
                     fill="none"
@@ -146,7 +145,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Dashboard Preview */}
+            {/* Dashboard  */}
             <div className="relative max-w-5xl mx-auto">
               <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl border border-white/20">
                 <div className="grid md:grid-cols-3 gap-6">

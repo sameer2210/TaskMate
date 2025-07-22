@@ -75,7 +75,7 @@ const Settings = () => {
     if (!userObj) return alert("Assigned user not found!");
 
     const task = {
-      id: `task-${Date.now()}`, // ✅ Unique task ID
+      id: `task-${Date.now()}`,       // Unique task ID
       title: newTask.title,
       description: newTask.description,
       assignedUser: userObj,
@@ -106,6 +106,7 @@ const Settings = () => {
       assignedUser: "",
       status: "todo",
     });
+    toast.success("Task added successfully click Save Button || Add new Task");
   };
 
   const handleSave = async () => {
@@ -119,7 +120,7 @@ const Settings = () => {
       const data = await res.json();
       if (res.ok) {
         // alert(" Data saved to MongoDB!");
-        toast.success("Data saved to MongoDB!");
+        toast.success("Data saved!");
       } else {
         // alert(" Failed to save data.");
         toast.info("Failed to save data!");
