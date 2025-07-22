@@ -68,7 +68,7 @@ const Register = () => {
         {/* Main */}
         <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r  to-teal-900 px-8 py-6 text-center">
+          <div className="bg-gradient-to-r  to-teal-900 px-8 py-2 text-center">
             <div className="w-16 h-16 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
               <svg
                 className="w-8 h-8 text-white"
@@ -84,13 +84,13 @@ const Register = () => {
                 />
               </svg>
             </div>
-            <h1 className="text-2xl font-bold  mb-2">Create Account</h1>
+            <h1 className="text-2xl font-bold  mb-1">Create Account</h1>
             <p className="text-emerald-900 text-sm">Sign up to get started</p>
           </div>
 
           {/* Form */}
           <div className="p-6">
-            <form onSubmit={SignupHandler} className="space-y-4">
+            <form onSubmit={SignupHandler} className="space-y-3">
               {/* Error Message */}
               {error && (
                 <div className="bg-red-50 border border-red-200 rounded-lg p-4">
@@ -180,7 +180,7 @@ const Register = () => {
             </form>
 
             {/* Login Link */}
-            <p className="mt-8 text-center text-sm text-slate-600">
+            <p className="mt-4 text-center text-sm text-slate-600">
               Already have an account?{" "}
               <a
                 href="/login"

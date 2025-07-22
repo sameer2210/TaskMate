@@ -7,14 +7,22 @@ export default async function handler(req, res) {
 
   try {
     const client = await connectToDatabase();
-    const db = client.db(); // TaskMate DB
+    const db = client.db("TaskMate");
+
+    console.log("Connected to DB:", db.databaseName);
 
     const settings = await db
       .collection("settings")
       .findOne({ _id: "default-settings" });
 
+    console.log("Settings found:", settings);
+
     if (!settings) {
-      return res.status(404).json({ message: "Settings not found" });
+      // Return empty settings structure if none found
+      return res.status(200).json({
+        boardData: { todo: [], inProgress: [], done: [] },
+        activityLog: [],
+      });
     }
 
     res.status(200).json(settings);

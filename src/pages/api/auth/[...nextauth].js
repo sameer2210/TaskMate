@@ -17,16 +17,26 @@ export default NextAuth({
       async authorize(credentials) {
         const { email, password } = credentials;
 
-        console.log("🔍 Login Attempt:", email, password);
+        console.log(" Login Attempt:", email, password);
 
         if (!email || !password) {
           throw new Error("All fields are required.");
         }
 
         const client = await connectToDatabase();
-        const db = client.db();
+        const db = client.db("TaskMate");
 
-        const user = await db.collection("users").findOne({ email });
+        console.log(" Connected to DB:", db.databaseName); // log DB name
+
+        const users = await db.collection("users").find().toArray();
+        console.log(" Users in DB:", users);
+
+        const user = await db
+          .collection("users")
+          .findOne({ email: email.toLowerCase() });
+        console.log(" User Found:", user);
+
+        // const user = await db.collection("users").findOne({ email });
 
         if (!user) {
           throw new Error("No user found with this email.");

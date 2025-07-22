@@ -16,7 +16,9 @@ export default async function handler(req, res) {
     const client = await connectToDatabase();
     const db = client.db("TaskMate");
 
-    const existingUser = await db.collection("users").findOne({ email });
+    const existingUser = await db
+      .collection("users")
+      .findOne({ email: email.toLowerCase() });
     if (existingUser) {
       return res.status(422).json({ message: "User already exists" });
     }
@@ -24,7 +26,7 @@ export default async function handler(req, res) {
     const hashedPassword = await bcrypt.hash(password, 12);
     const result = await db.collection("users").insertOne({
       name,
-      email,
+      email: email.toLowerCase(),
       password: hashedPassword,
     });
 

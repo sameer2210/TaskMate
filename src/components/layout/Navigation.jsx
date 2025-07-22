@@ -13,7 +13,7 @@ const Navigation = () => {
 
     return (
         <nav className="flex gap-5 mt-10">
-            <Link href="/">Home</Link>
+            <Link className="bg-black text-white px-4 py-2 rounded" href="/">Home</Link>
             {session ? (
                 <>
                     <Link href="/profile">Profile</Link>

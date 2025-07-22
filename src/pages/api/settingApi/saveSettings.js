@@ -1,5 +1,4 @@
 import { connectToDatabase } from "@/lib/mongodb";
-import { toast } from "react-toastify";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -9,8 +8,19 @@ export default async function handler(req, res) {
   try {
     const { boardData, users, activityLog } = req.body;
 
+    // Validate input data
+    if (!boardData || typeof boardData !== "object") {
+      return res.status(400).json({ message: "Invalid boardData" });
+    }
+
+    if (!Array.isArray(activityLog)) {
+      return res.status(400).json({ message: "Invalid activityLog" });
+    }
+
+    console.log("Saving settings:", { boardData, users, activityLog });
+
     const client = await connectToDatabase();
-    const db = client.db(); // default DB: TaskMate (from URI)
+    const db = client.db("TaskMate");
 
     const result = await db.collection("settings").updateOne(
       { _id: "default-settings" }, // constant ID
@@ -25,11 +35,10 @@ export default async function handler(req, res) {
       { upsert: true } // if not found, insert new
     );
 
+    console.log("Settings saved successfully:", result);
     res.status(200).json({ message: "Settings saved successfully", result });
-    toast.success("Settings saved successfully!");
   } catch (error) {
     console.error("Error saving settings:", error);
-    toast.error("Failed to save settings. Please try again.");
     res.status(500).json({ message: "Internal Server Error", error });
   }
 }

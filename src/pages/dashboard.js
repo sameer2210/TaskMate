@@ -15,7 +15,12 @@ const KanbanDashboard = () => {
         const res = await fetch("/api/settingApi/getSettings");
         const data = await res.json();
 
-        setTasks(data.boardData);
+        setTasks({
+          todo: data.boardData?.todo || [],
+          inProgress: data.boardData?.inProgress || [],
+          done: data.boardData?.done || [],
+        });
+
         setUsers(data.users);
         setActivityLog(data.activityLog);
       } catch (error) {
